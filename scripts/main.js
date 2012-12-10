@@ -12,10 +12,6 @@ function getSubmitted(username,resultarea,chosenvalue,after,first)
             var count = 1;
             $.each(reply.data.children,function(key,value)
             {
-                // Debug
-                console.log("comparing: [" + value.data["subreddit"].toLowerCase() +"] == ["+ chosenvalue.toLowerCase() +"]");
-                // Debug
-
                 if( value.data["subreddit"].toLowerCase() == chosenvalue.toLowerCase() )
                 {
                     BIGRESULTLIST += " <a href='http://www.reddit.com"+value.data["permalink"]+"'>"+(count++)+"</a>,";
@@ -66,7 +62,7 @@ chrome.extension.sendMessage({what:"getSubreddits"}, function(response)
                 {
                     var username    = userlink.innerHTML;
                     var resultarea  = $("<span style='margin-right:5px;'></span>");
-                    var choose      = $("<select style='width:50px;height:10px;margin-right:5px;'></select>");
+                    var choose      = $("<select style='width:25px;height:10px;margin-right:5px;'></select>");
 
                     choose.insertBefore(userlink);
                     resultarea.insertAfter(choose);
