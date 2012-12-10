@@ -13,7 +13,7 @@ function getSubmitted(username,resultarea,choose,after)
         "http://www.reddit.com/user/"+username+"/submitted.json?limit=100&after="+after,
         function(reply)
         {
-            var count = 0;
+            var count = 1;
             $.each(reply.data.children,function(key,value)
             {
                 var ll = value.data["subreddit"].toLowerCase();
