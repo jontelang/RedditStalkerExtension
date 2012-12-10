@@ -32,6 +32,6 @@
 		"16": "icons/16.png",
 		"48": "icons/48.png",
 		"128": "icons/128.png"
-	},
-	"options_page" : "fancy-settings/source/index.html"
+	}/*,
+	"options_page" : "fancy-settings/source/index.html"*/
 }
