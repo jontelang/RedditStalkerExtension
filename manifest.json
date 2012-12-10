@@ -1,6 +1,6 @@
 {
 	"name": "Reddit Stalker Extension",
-	"version": "0.2",
+	"version": "0.3",
 	"manifest_version" : 2,
 	"description": "One-click solution to finding submissions in any given subreddit.",
 	"permissions":[
@@ -32,6 +32,5 @@
 		"16": "icons/16.png",
 		"48": "icons/48.png",
 		"128": "icons/128.png"
-	}/*,
-	"options_page" : "fancy-settings/source/index.html"*/
+	}
 }
