@@ -1,8 +1,8 @@
 {
-	"name": "Reddit stalker",
+	"name": "Reddit Stalker Extension",
 	"version": "0.1",
 	"manifest_version" : 2,
-	"description": "Finds recent submissions in different subreddits.",
+	"description": "One-click solution to finding submissions in any given subreddit.",
 	"permissions":[
 		"storage"
 	],
