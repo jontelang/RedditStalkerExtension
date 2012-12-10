@@ -1,6 +1,6 @@
 {
 	"name": "Reddit Stalker Extension",
-	"version": "0.3",
+	"version": "0.4",
 	"manifest_version" : 2,
 	"description": "One-click solution to finding a users posts in any given subreddit.",
 	"permissions":[
