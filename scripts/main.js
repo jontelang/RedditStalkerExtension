@@ -1,6 +1,6 @@
 var BIGRESULTLIST = "";
 
-function getSubmitted(username,resultarea,choose,after,first)
+function getSubmitted(username,resultarea,chosenvalue,after,first)
 {
     // reset when it is the first recursion-level.
     if(first==true){BIGRESULTLIST="";}
@@ -12,19 +12,21 @@ function getSubmitted(username,resultarea,choose,after,first)
             var count = 1;
             $.each(reply.data.children,function(key,value)
             {
-                var ll = value.data["subreddit"].toLowerCase();
-                var kk = choose.val().toLowerCase()
-                if( kk == ll )
+                // Debug
+                console.log("comparing: [" + value.data["subreddit"].toLowerCase() +"] == ["+ chosenvalue.toLowerCase() +"]");
+                // Debug
+
+                if( value.data["subreddit"].toLowerCase() == chosenvalue.toLowerCase() )
                 {
                     BIGRESULTLIST += " <a href='http://www.reddit.com"+value.data["permalink"]+"'>"+(count++)+"</a>,";
                 }
             });
 
-            console.log(reply.data.after);
+            console.log("reply.data.after: " + reply.data.after);
             if( reply.data.after != null )
-            {   getSubmitted(username,resultarea,choose,reply.data.after,false);
+            {   getSubmitted(username,resultarea,chosenvalue,reply.data.after,false);
             }else{
-                BIGRESULTLIST = (BIGRESULTLIST==""?"Nothing":BIGRESULTLIST);
+                if(BIGRESULTLIST=="") BIGRESULTLIST="Nothing";
                 resultarea.html(BIGRESULTLIST);
             }
         },
@@ -64,7 +66,7 @@ chrome.extension.sendMessage({what:"getSubreddits"}, function(response)
                 {
                     var username    = userlink.innerHTML;
                     var resultarea  = $("<span style='margin-right:5px;'></span>");
-                    var choose      = $("<select style='width:25px;height:10px;margin-right:5px;'></select>");
+                    var choose      = $("<select style='width:50px;height:10px;margin-right:5px;'></select>");
 
                     choose.insertBefore(userlink);
                     resultarea.insertAfter(choose);
@@ -74,12 +76,12 @@ chrome.extension.sendMessage({what:"getSubreddits"}, function(response)
                         choose.html(options);
                     });
 
-                    choose.on('change',function()
+                    choose.change(function()
                     {
                         // Loading animated gif.
                         var imglink = chrome.extension.getURL("scripts/l.gif");
                         resultarea.html("<img src='"+imglink+"' />");
-                        getSubmitted(username,resultarea,choose,null,true);
+                        getSubmitted(username,resultarea,choose.val(),null,true);
                     });
                 }
             });
