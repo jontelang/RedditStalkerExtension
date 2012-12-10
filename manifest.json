@@ -2,7 +2,7 @@
 	"name": "Reddit Stalker Extension",
 	"version": "0.3",
 	"manifest_version" : 2,
-	"description": "One-click solution to finding submissions in any given subreddit.",
+	"description": "One-click solution to finding a users posts in any given subreddit.",
 	"permissions":[
 		"storage"
 	],
