@@ -1,13 +1,9 @@
 var BIGRESULTLIST = "";
 
-function getSubmitted(username,resultarea,choose,after)
+function getSubmitted(username,resultarea,choose,after,first)
 {
-    // after will only be NULL when we manually call this function
-    // if we call it via recursion it will not be NULL
-    // therefor we can reset the string here.
-    // -- now I am confused about what made it wrong in the first place
-    //    but i dont care.
-    if(after==null){BIGRESULTLIST="";}
+    // reset when it is the first recursion-level.
+    if(first==true){BIGRESULTLIST="";}
 
     $.get(
         "http://www.reddit.com/user/"+username+"/submitted.json?limit=100&after="+after,
@@ -26,7 +22,7 @@ function getSubmitted(username,resultarea,choose,after)
 
             console.log(reply.data.after);
             if( reply.data.after != null )
-            {   getSubmitted(username,resultarea,choose,reply.data.after);
+            {   getSubmitted(username,resultarea,choose,reply.data.after,false);
             }else{
                 BIGRESULTLIST = (BIGRESULTLIST==""?"Nothing":BIGRESULTLIST);
                 resultarea.html(BIGRESULTLIST);
@@ -83,7 +79,7 @@ chrome.extension.sendMessage({what:"getSubreddits"}, function(response)
                         // Loading animated gif.
                         var imglink = chrome.extension.getURL("scripts/l.gif");
                         resultarea.html("<img src='"+imglink+"' />");
-                        getSubmitted(username,resultarea,choose,null);
+                        getSubmitted(username,resultarea,choose,null,true);
                     });
                 }
             });
