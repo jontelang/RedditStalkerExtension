@@ -16,7 +16,9 @@ function getSubmitted(username,resultarea,choose,after)
             var count = 0;
             $.each(reply.data.children,function(key,value)
             {
-                if( value.data["subreddit"] == choose.val() )
+                var ll = value.data["subreddit"].toLowerCase();
+                var kk = choose.val().toLowerCase()
+                if( kk == ll )
                 {
                     BIGRESULTLIST += " <a href='http://www.reddit.com"+value.data["permalink"]+"'>"+(count++)+"</a>,";
                 }
